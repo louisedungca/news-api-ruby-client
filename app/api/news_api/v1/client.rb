@@ -6,7 +6,8 @@ class NewsApi::V1::Client
   API_BASE_URL = 'https://newsapi.org/v2'
   API_KEY = Rails.application.credentials.news_api.api_key
 
-  # endpoint method
+  ## ENDPOINT METHODS
+  # for searching through any news articles up to a month old (could have 24hrs delay due to NewsApi account type)
   def everything(q = '', **params)
     request(
       http_method: :get,
@@ -15,7 +16,23 @@ class NewsApi::V1::Client
     )
   end
 
-  # add more endpoint methods as needed
+  # for live top and breaking headlines for a country, specific category in a country, single source, or multiple sources
+  def top_headlines(**params)
+    request(
+      http_method: :get,
+      endpoint: 'top-headlines',
+      params: params
+    )
+  end
+
+  # for subset of news publishers that top headlines (/top-headlines) are available from
+  def sources(**params)
+    request(
+      http_method: :get,
+      endpoint: 'top-headlines/sources',
+      params: params
+    )
+  end
 
   private
 
