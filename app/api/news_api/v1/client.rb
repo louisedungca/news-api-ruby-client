@@ -61,7 +61,10 @@ class NewsApi::V1::Client
       body: response.body
     }
   rescue Faraday::Error => error
-    puts error.inspect
+    raise Errors::ApiError.new(
+      message: "API ERROR: #{error.message.capitalize}",
+      faraday_error_class: error.class
+    )
   end
 
 end
