@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ApiClient</title>
+    <title>News API Ruby Client</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="relative bg-stone-200 w-full min-h-dvh h-full flex flex-col items-center">
+    <%= render partial: "layouts/flash_mesg" %>   
+
+    <main class="relative bg-stone-200 w-full h-5/6 flex flex-col items-center justify-center p-4">
+      <%= yield %>
+    </main>
   </body>
 </html>

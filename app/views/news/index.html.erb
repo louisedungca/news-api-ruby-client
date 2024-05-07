@@ -1,0 +1,21 @@
+<h1 class="text-3xl font-bold underline">
+  Articles
+</h1>
+
+<% if @articles.any? %>
+  <div>
+    <% @articles.each do |article| %>
+      <div class='p-4'>
+        <h1 class='text-xl font-bold tracking-widest'><%= article[:title] %></h1>
+        <p><%= article[:description] %></p>
+        <% if article[:url].present? %>
+          <small class='italic hover:text-bold'>
+            <%= link_to 'Read more', article[:url], target: '_blank'%>
+          </small>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No articles available.</p>
+<% end %>
