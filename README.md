@@ -1,5 +1,5 @@
 # News API Ruby Client
-A Ruby client for the News API (https://newsapi.org/)
+A Ruby client for the [News API](https://newsapi.org/).
 
 ## Setup
 1. Create an account on [News API](https://newsapi.org/docs/get-started) to get the API Key.
@@ -15,7 +15,7 @@ $ bundle install
 ```bash
 $ rails credentials:edit
 ```
-```bash
+```yaml
 # tmp/some_timestamp_and_id-credentials.yml
 
 news_api:
@@ -38,25 +38,25 @@ $ bin/dev
 ## Usage
 
 ### Create an instance of the Client class
-```bash
+```ruby
 news = NewsApi::V1::Client.new
 ```
 
-### Get everything related to a keyword or phrase
+### Get Everything
 Fetches news articles from over 150,000 large and small news sources and blogs related to the query parameter. See [#endpoints/everything](https://newsapi.org/docs/endpoints/everything) for the full list of request parameters that can be added.
-```bash
+```ruby
 news.everything('Taylor Swift')
 news.everything('Ruby on Rails', searchIn: 'title', sortBy: 'popularity')
 ```
 
-### Get top headlines
+### Get Top Headlines
 Fetches live top and breaking headlines for a country, specific category in a country, single source, or multiple sources. See [#endpoints/top-headlines](https://newsapi.org/docs/endpoints/top-headlines) for the full list of request parameters that can be added.
-```bash
+```ruby
 news.top_headlines(country: 'us', category: 'business')
 ```
 
-### Get sources
+### Get Sources
 Fetches subset of news publishers that top headlines [/top-headlines](https://newsapi.org/docs/endpoints/top-headlines) are available from. See [#endpoints/sources](https://newsapi.org/docs/endpoints/sources) for the full list of request parameters that can be added.
-```bash
+```ruby
 news.sources(country: 'us', language: 'en')
 ```
