@@ -1,24 +1,62 @@
-# README
+# News API Ruby Client
+A Ruby client for the News API (https://newsapi.org/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+1. Create an account on [News API](https://newsapi.org/docs/get-started) to get the API Key.
 
-Things you may want to cover:
+2. Fork and clone this repository.
+```bash
+$ git clone git@github.com:louisedungca/news-api-ruby-client.git
+$ bundle install
 
-* Ruby version
+```
 
-* System dependencies
+3. Generate a new master.key and configure your credentials:
+```bash
+$ rails credentials:edit
+```
+```bash
+# tmp/some_timestamp_and_id-credentials.yml
 
-* Configuration
+news_api:
+  api_key: your_news_api_key
 
-* Database creation
+# aws:
+#   access_key_id: some_generated_id
+#   secret_access_key: some_generated_key
 
-* Database initialization
+# Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+secret_key_base: generated_secret_key
+```
 
-* How to run the test suite
+4. Start the application:
+```bash
+$ bin/rails db:prepare
+$ bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Usage
 
-* Deployment instructions
+### Create an instance of the Client class
+```bash
+news = NewsApi::V1::Client.new
+```
 
-* ...
+### Get everything related to a keyword or phrase
+Fetches news articles from over 150,000 large and small news sources and blogs related to the query parameter. See [#endpoints/everything](https://newsapi.org/docs/endpoints/everything) for the full list of request parameters that can be added.
+```bash
+news.everything('Taylor Swift')
+news.everything('Ruby on Rails', searchIn: 'title', sortBy: 'popularity')
+```
+
+### Get top headlines
+Fetches live top and breaking headlines for a country, specific category in a country, single source, or multiple sources. See [#endpoints/top-headlines](https://newsapi.org/docs/endpoints/top-headlines) for the full list of request parameters that can be added.
+```bash
+news.top_headlines(country: 'us', category: 'business')
+```
+
+### Get sources
+Fetches subset of news publishers that top headlines [/top-headlines](https://newsapi.org/docs/endpoints/top-headlines) are available from. See [#endpoints/sources](https://newsapi.org/docs/endpoints/sources) for the full list of request parameters that can be added.
+```bash
+news.sources(country: 'us', language: 'en')
+```
