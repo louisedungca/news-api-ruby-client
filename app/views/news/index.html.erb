@@ -1,0 +1,23 @@
+<% if @articles.any? %>
+  <div class='h-full'>
+    <p class="text-sm font-light p-4">
+      Results for: "<%= @query %>"
+    </p>
+
+    <div class='divide-y-2 divide-slate-500/25 px-2'>    
+      <% @articles.each do |article| %>
+        <% unless article[:title] == "[Removed]" || article[:description] == "[Removed]" %>
+          <div class='p-4'>
+            <h1 class='text-xl font-bold tracking-widest'><%= article[:title] %></h1>
+            <p><%= article[:description] %></p>
+            <% if article[:url].present? %>
+              <small class='italic hover:underline hover:font-bold'>
+                <%= link_to 'Read more', article[:url], target: '_blank'%>
+              </small>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ApiClient</title>
+    <title>News API Ruby Client</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="relative bg-stone-100 w-full h-dvh flex flex-col items-center overflow-y-auto">
+    <%= render partial: "layouts/flash_mesg" %>   
+
+    <header class="text-3xl font-bold p-8">
+      News API
+    </header>
+
+    <div class='p-2 w-1/3'>
+      <%= form_tag(news_index_path, method: 'get', class: 'w-full flex gap-2') do %>
+        <%= text_field_tag :query, params[:query], placeholder: 'Search anything!', class: "rounded-md w-3/4" %>
+        <%= submit_tag "Search", class: 'font-semibold hover:bg-stone-400 py-2 px-4 bg-stone-300 rounded-md cursor-pointer w-1/4' %>
+      <% end %>
+    </div>
+
+    <main class="w-full h-auto flex gap-2 justify-center py-4 px-2 divide-x-2 divide-slate-500/2">
+      <% if @articles.present? %>
+        <section class='flex flex-col items-center justify-center'>
+          <%= yield %>
+        </section>
+        
+        <aside class='w-1/3 min-h-full p-4'>
+          <%= render 'news/top_news' %>
+        </aside>
+      <% else %>
+        <div class=''>
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/0394e3bd-2d17-4808-a229-19fb79a06568/3FYzhj10Rm.json" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+        </div>
+      <% end %> 
+    </main>
+
+    <% if @articles.present? %>
+      <footer class='text-xs py-4 mt-4'>
+        NewsAPI Ruby Client © 2024
+      </footer>
+    <% end %>
   </body>
 </html>

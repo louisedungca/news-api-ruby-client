@@ -62,3 +62,5 @@ end
 
 
 gem "faraday", "~> 2.9"
+
+gem "tailwindcss-rails", "~> 2.6"
