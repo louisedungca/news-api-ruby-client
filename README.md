@@ -1,5 +1,5 @@
 # News API Ruby Client
-A Ruby client for the News API (https://newsapi.org/)
+A Ruby client for the [News API](https://newsapi.org/)
 
 ## Setup
 1. Create an account on [News API](https://newsapi.org/docs/get-started) to get the API Key.
