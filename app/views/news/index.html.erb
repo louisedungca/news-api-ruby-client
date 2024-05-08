@@ -1,14 +1,5 @@
-<h1 class="text-3xl font-bold p-4 mb-3">
-  News API
-</h1>
-
-<%= form_tag(news_index_path, method: "get") do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Enter search term", class: "rounded-md" %>
-  <%= submit_tag "Search", class: 'font-semibold hover:bg-stone-400 py-2 px-4 bg-stone-300 rounded-md cursor-pointer' %>
-<% end %>
-
 <% if @articles.any? %>
-<div>
+<div class='h-full'>
   <p class="text-sm font-light p-4">
     Results for: "<%= @query %>"
   </p>
@@ -28,5 +19,7 @@
   </div>
 </div>
 <% else %>
-  <p>No articles available.</p>
+  <div class='h-full w-full grid place-items-center p-4'>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/0394e3bd-2d17-4808-a229-19fb79a06568/3FYzhj10Rm.json" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay direction="1" mode="normal"></lottie-player>
+  </div>
 <% end %>
